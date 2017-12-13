@@ -3,14 +3,14 @@ $(document).ready(function(){
 const charactersArray = [
 	{
 		name: 'rama',
-		healthPoints: 80,
-		attackPower: 5,
+		healthPoints: 180,
+		attackPower: 6,
 		counterAttackPower: 10
 	},
 
 	{
 		name: 'ravana',
-		healthPoints: 90,
+		healthPoints: 150,
 		attackPower: 4,
 		counterAttackPower: 8
 	},
@@ -24,9 +24,9 @@ const charactersArray = [
 
 	{
 		name:'atikaya',
-		healthPoints: 60,
+		healthPoints: 80,
 		attackPower: 2,
-		counterAttackPower: 13
+		counterAttackPower: 6
 	}
 
 ];
@@ -37,6 +37,7 @@ var warrior = {
 	name : '',//test
 	healthPoints : 0,
 	attackPower  : 0,
+	baseAttackPower : 0,
 	isDefeated : false,
 	
 	// object to store the current defender
@@ -46,7 +47,8 @@ var warrior = {
 		//get the relevant values from the pass warrior object
 		this.name = warriorObj.name;//test
 		this.healthPoints = warriorObj.healthPoints;
-		this.attackPower = warriorObj.attackPower;	
+		this.baseAttackPower = warriorObj.attackPower;
+		this.attackPower = this.baseAttackPower;	
 	},
 
 	//warrior knows who the enemy is?
@@ -54,18 +56,15 @@ var warrior = {
 		this.currentDefender = defenderObj;
 	},
 
-	//create attack method which calls the current defenders attacked method
-	//based on the return value, decrement the health points and updates attack 
-	//points
-
 	launchAttack : function(){		
 		// let defenderCounterAttackPower = this.currentDefender.defendAttack(this.attackPower);
+		console.log("Your attack power is now = ", this.attackPower);
 
 		let defenderCounterAttackPower = defender.defendAttack(this.attackPower);
 
 		this.healthPoints -= defenderCounterAttackPower; //decrement healthpoints
-		this.attackPower += this.attackPower; //double attackpower 4,8, 12, 16 etc
-
+		this.attackPower += this.baseAttackPower; //double attackpower 4,8, 12, 16 etc
+		
 		if(this.healthPoints <= 0){
 			this.isDefeated = true;
 		}
@@ -106,7 +105,6 @@ var defender = {
 
 	defendAttack : function(attackPoints){
 		//decrement health points
-
 		this.healthPoints -= attackPoints;
 
 		if(this.healthPoints <= 0){
@@ -134,8 +132,8 @@ var gameReferee = {
 	isWarriorChosen : false,
 	isDefenderChosen : false,
 
-	currentWarrior : {}, //todo-how to use these
-	currentDefender : {}, //todo- how to use these
+	currentWarrior : {}, //todo-how to use these?
+	currentDefender : {}, //todo- how to use these?
 
 	defeatedDefendersCount : 0,
 
@@ -155,6 +153,7 @@ var gameReferee = {
 		warrior.setDefender(chosenDefender);
 	},
 
+	//keep checking for the status of warrior and defender
 	checkGameStatus : function(){
 
 		if(warrior.isWarriorDefeated()){
@@ -175,6 +174,7 @@ var gameReferee = {
 		}
 	},
 
+	//launch attack
 	warriorAttack: function(){
 		// this.currentWarrior.launchAttack(); //todo: why not working?
 		warrior.launchAttack();
@@ -191,13 +191,15 @@ var gameReferee = {
 	resetGame : function(){
 		this.isWarriorChosen = false;
 		this.isDefenderChosen = false;
-		this.currentWarrior = {};
-		this.currentDefender = {};		
+		this.currentWarrior = {}; //todo
+		this.currentDefender = {};	//todo	
 		warrior.reset();
 		defender.reset();
 	}
 
 }
+
+//when the warrior or defender are chosen
 
 $('.char-image').on('click', function(){
 	sound('select');
@@ -256,12 +258,12 @@ $("#btn-attack").on('click', function(){
 		$('#btn-attack').attr('disabled', 'disabled');
 		defender.reset();
 
-		if(gameReferee.defeatedDefendersCount < 3)
+		if(gameReferee.defeatedDefendersCount < (charactersArray.length - 1))
 		{
 			updateStatus('You defeated ' + defenderName + '!' + ' Pick another Defender!', 'yellow' );
 			sound('win');	
 		}else{
-			updateStatus('VICTORY!! You ' + warriorName + ' defeateded all your opponents!!', 'green');
+			updateStatus('VICTORY!! You ' + warriorName + ' defeateded all your opponents!!', '#006400');
 			sound('victory');
 			$('#btn-reset').show();
 		}		
