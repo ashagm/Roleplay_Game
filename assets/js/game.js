@@ -104,10 +104,6 @@ var defender = {
 		this.counterAttackPower = defenderObj.counterAttackPower;	
 	},
 
-	//create attacked() method that passes the number of attack points
-	//which decrements the defenders health point.This returns the 
-	//counter attack points back to the calling method
-
 	defendAttack : function(attackPoints){
 		//decrement health points
 
@@ -138,8 +134,9 @@ var gameReferee = {
 	isWarriorChosen : false,
 	isDefenderChosen : false,
 
-	currentWarrior : {},
-	currentDefender : {},
+	currentWarrior : {}, //todo-how to use these
+	currentDefender : {}, //todo- how to use these
+
 	defeatedDefendersCount : 0,
 
 	//method to set the current warrior
@@ -159,7 +156,6 @@ var gameReferee = {
 	},
 
 	checkGameStatus : function(){
-		// let whoDefeated = "";
 
 		if(warrior.isWarriorDefeated()){
 			$("#" + warrior.name).hide('slow');
@@ -200,12 +196,6 @@ var gameReferee = {
 		warrior.reset();
 		defender.reset();
 	}
-
-	// event method that gets called when user presses the attack button
-	// inturn calls the warrior.attack. Keep calling the warrior attack()
-	// until the defender is defeated. If the warrior is defated, reset game
-	// if the defender is defeated, wait until the next defender is chosen 
-	// If all the defenders are defeated,then end game.
 
 }
 
@@ -250,8 +240,8 @@ $("#btn-attack").on('click', function(){
 	$("#fig-" + (warriorName)).html(warrior.healthPoints);
 	$("#fig-" + (defender.name)).html(defender.healthPoints);
 
-	updateStatus("You attacked " + defenderName + " with " + warrior.attackPower + " warrior power!! " + 
-		defender.name + " attacked you back with " + defender.counterAttackPower + " defender power!!", "red");
+	updateStatus("You attacked " + defenderName + " with " + warrior.attackPower + " warrior power!! " + "<br>"
+		+ defender.name + " attacked you back with " + defender.counterAttackPower + " defender power!!", "white");
 	
 	let defeated = gameReferee.checkGameStatus();
 
@@ -268,10 +258,10 @@ $("#btn-attack").on('click', function(){
 
 		if(gameReferee.defeatedDefendersCount < 3)
 		{
-			updateStatus('You defeated ' + defenderName + '!' + 'Pick another Defender!', 'green' );
+			updateStatus('You defeated ' + defenderName + '!' + ' Pick another Defender!', 'yellow' );
 			sound('win');	
 		}else{
-			updateStatus('VICTORY!! You ' + warriorName + ' defeateded all Enemies!', 'green');
+			updateStatus('VICTORY!! You ' + warriorName + ' defeateded all your opponents!!', 'green');
 			sound('victory');
 			$('#btn-reset').show();
 		}		

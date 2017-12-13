@@ -64,6 +64,7 @@ body{
 	 font-family: 'Joti One';
 
 }
+
 #btn-attack:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
@@ -84,9 +85,6 @@ body{
 
 #instructions{
 	font-size: 14px;
-	background-image: url("../images/Ramayana-bg9.jpg");
-	background-size:  cover;  
-	background-repeat: no-repeat;
 	background-color: #000;
 	color: #fff;
 }
@@ -96,6 +94,7 @@ body{
 	color: #FF6347;
 	cursor: pointer;
 	text-decoration: none;
+	font-family: 'Joti One';
 }
 
 /*Animations*/
