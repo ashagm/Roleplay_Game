@@ -1,0 +1,116 @@
+*{
+	box-sizing: border-box;
+}
+html {
+	min-height: 100%;
+}
+
+body{
+	margin: 10px;
+	background-image: url("../images/Ramayana-bg3.jpg");
+	background-size:  cover;  
+	background-repeat: no-repeat;
+	font-family: 'Joti One','Caesar Dressing', 'Diplomata', 'Ewert',  cursive;
+}
+
+/*#header{
+	font-size: 40px;
+	color : #FF6347;
+}
+*/
+.headings-battle div{
+	font-size: 22px;
+	color: #FF6347;
+}
+
+#footer{
+	color : #FF6347;
+	font-size: 12px;
+	padding-top: 10px;
+	border: 2px solid black;
+}
+
+#main-content .img-content{
+	/*border: 3px solid #000;*/
+}
+
+.char-image img{
+	width: 100%;
+	height: 200px;
+}
+
+.char-image figcaption{
+	text-align: center;
+	background-color: #000;
+	color: #fff;
+	width: 100%;
+}
+
+.img-content div{
+	/*border: 2px solid #000;*/
+	height: 250px;
+}
+
+.div-battleground{
+	height: 120px;
+	padding-top : 10px;
+	font-size: 22px;
+}
+
+#battle-txt{
+	font-size: 28px;
+}
+
+#btn-attack{
+	 margin-top: 100px;
+	 padding: 10px 40px;
+	 color: #000;
+	 font-weight: bold;
+	 font-size: 25px;
+	 background-color: 	#D4AF37;
+	 border: 2px solid red;
+	 opacity: .6;
+	 cursor: pointer;
+	 font-family: 'Joti One';
+
+}
+
+#status-attack{
+	text-transform: uppercase;
+	color: #FF6347;
+}
+
+#btn-reset{
+	color: #fff;
+	background-color: #000;
+}
+
+
+
+/*Animations*/
+
+#battle-txt {
+    color: red;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+    animation-name: battle-txt;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+/* Standard syntax */
+@keyframes battle-txt {
+    0%   {color: red;}
+    10%  {color: yellow;}
+    20%  {color: green;}
+    30%  {color: aqua;}
+    40%  {color: blue;}
+    50%  {color: white;}
+    60%  {color: purple;}
+    70%  {color: fuchsia;}
+    80%  {color: maroon;}
+    90%  {color: grey;}
+    100% {color: black;}
+}
+
+

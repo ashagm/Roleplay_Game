@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" RPG Game">
+    <meta name="author" content="Asha Tad">
+    <title>RPG Game </title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Joti+One|Caesar+Dressing|Diplomata|Ewert" rel="stylesheet">   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+	<div class="container" id="main-content">
+		<div class = "row img-content">
+			<div class="col-md-3">
+				<figure class="char-image" id="rama" data-name="rama">
+					<figcaption>Rama</figcaption>
+					<img src="assets/images/rama.jpg" id="rama-img" class="img-thumbnail" ></button>
+					<figcaption id="fig-rama" data-fig="rama">points4</figcaption>
+				</figure>
+			</div>
+			<div class="col-md-3">
+				<figure class="char-image" id="ravana" data-name="ravana">
+					<figcaption>Ravana</figcaption>
+					<img src="assets/images/ravan.jpg" id="ravana-img" class="img-thumbnail" >
+					<figcaption id="fig-ravana" data-fig="ravana">Points</figcaption>
+				</figure>
+			</div>
+			<div class="col-md-3">
+				<figure class="char-image" id="kumbakarna" data-name="kumbakarna">
+					<figcaption>Kumbakarna</figcaption>
+					<img src="assets/images/kumbhakarna.jpg" id="kumbakarna-img" 
+					class="img-thumbnail">
+					<figcaption id="fig-kumbakarna" data-fig="kumbakarna">points2</figcaption>
+				</figure>
+			</div>
+			<div class="col-md-3" >
+				<figure class="char-image" id="atikaya" data-name="atikaya">
+					<figcaption>Atikaya</figcaption>
+					<img src="assets/images/atikaya.jpg" id="atikaya-img" class="img-thumbnail">
+					<figcaption id="fig-atikaya" data-fig="atikaya">points3</figcaption>
+				</figure>
+			</div>
+		</div>
+		<div class = "row">
+			<div class="col-md-12 text-center div-battleground">	
+				<div id="battle-txt"> Battleground </div>	
+				<div id="status-attack">Begin the Battle. Pick your Warrior and an Enemy</div>
+				<button class= "btn btn-success" id="btn-reset"> Fight Again? </button>		
+			</div>
+		</div>
+		<div class = "row text-center headings-battle">
+			<div class="col-md-4"> Warrior </div>		
+			<div class="col-md-4"> </div>
+			<div class="col-md-4"> Defender </div>
+		</div>
+		<div class = "row img-content">
+			<div class="col-md-4" id ="div-warrior"></div>			
+			<div class="col-md-4 text-center" id="div-attack">
+				<button class= "btn btn-default" id="btn-attack" disabled=​"disabled">Attack</button>
+			</div>
+			<div class="col-md-4" id="div-defender"></div>			
+		</div>
+	</div>
+	<div class="container" id="footer">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				copyright &copy; 2017 AshaTad	
+			</div>
+		</div>
+	</div>		
+	
+	<!-- jQuery library -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+	<!-- Popper -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
+	<!-- Latest compiled and minified Bootstrap JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity ="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+	<!-- custom js -->
+	<script src="assets/js/game.js"></script>
+
+</body>
+</html>
