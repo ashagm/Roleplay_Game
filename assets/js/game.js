@@ -3,30 +3,30 @@ $(document).ready(function(){
 const charactersArray = [
 	{
 		name: 'rama',
-		healthPoints: 160,
-		attackPower: 10,
-		counterAttackPower: 20
-	},
-
-	{
-		name: 'ravana',
-		healthPoints: 130,
-		attackPower: 15,
+		healthPoints: 80,
+		attackPower: 5,
 		counterAttackPower: 10
 	},
 
 	{
+		name: 'ravana',
+		healthPoints: 90,
+		attackPower: 4,
+		counterAttackPower: 8
+	},
+
+	{
 		name: 'kumbakarna',
-		healthPoints: 180,
-		attackPower: 7,
-		counterAttackPower: 5
+		healthPoints: 100,
+		attackPower: 3,
+		counterAttackPower: 9
 	},
 
 	{
 		name:'atikaya',
-		healthPoints: 112,
-		attackPower: 10,
-		counterAttackPower: 3
+		healthPoints: 60,
+		attackPower: 2,
+		counterAttackPower: 13
 	}
 
 ];
@@ -159,22 +159,22 @@ var gameReferee = {
 	},
 
 	checkGameStatus : function(){
-
-		let whoDefeated = "";
+		// let whoDefeated = "";
 
 		if(warrior.isWarriorDefeated()){
+			$("#" + warrior.name).hide('slow');
+			this.isWarriorChosen = false;
+			this.isDefenderChosen = false;
 			return "warrior";
-			//game over
-			//reset game
+
 		}else if(warrior.isDefenderDefeated()){
 			this.defeatedDefendersCount++;
 
 			$("#" + defender.name).hide('slow');
+			this.isDefenderChosen = false;
 			defender.reset();
 
 			return "defender";
-			//get next defender
-			//continue attack	
 
 		}
 	},
@@ -196,8 +196,7 @@ var gameReferee = {
 		this.isWarriorChosen = false;
 		this.isDefenderChosen = false;
 		this.currentWarrior = {};
-		this.currentDefender = {};	
-		$('#btn-reset').hide();
+		this.currentDefender = {};		
 		warrior.reset();
 		defender.reset();
 	}
@@ -224,7 +223,7 @@ $('.char-image').on('click', function(){
 				gameReferee.loadCurrentWarrior(this);
 			}
 		});		
-	}else{	
+	}else if(!gameReferee.isDefenderChosen){	
 		$(this).css("border", "5px solid #FF0000");
 		$(this).appendTo('#div-defender');
 		$('#btn-attack').removeAttr('disabled');
@@ -234,6 +233,8 @@ $('.char-image').on('click', function(){
 				gameReferee.loadCurrentDefender(this);
 			}
 		});			
+	}else{
+		alert("The game is on...wait.")
 	}
 });
 
@@ -256,7 +257,9 @@ $("#btn-attack").on('click', function(){
 
 	if(defeated === "warrior"){
 		$('#btn-attack').attr('disabled', 'disabled');
-		$("#status-attack").html();
+		updateStatus('You got defeated by ' + defenderName + '!', 'red' );
+		sound('win');
+		$('#btn-reset').show();
 		gameReferee.resetGame();
 
 	}else if (defeated === "defender"){
@@ -266,7 +269,7 @@ $("#btn-attack").on('click', function(){
 		if(gameReferee.defeatedDefendersCount < 3)
 		{
 			updateStatus('You defeated ' + defenderName + '!' + 'Pick another Defender!', 'green' );
-				sound('win');	
+			sound('win');	
 		}else{
 			updateStatus('VICTORY!! You ' + warriorName + ' defeateded all Enemies!', 'green');
 			sound('victory');
@@ -276,18 +279,18 @@ $("#btn-attack").on('click', function(){
 
 });
 
+//restart game
 $("#btn-reset").on('click', function(){
 	location.reload(); //quick-fix only!! Have to find a better way
-
 });
 
+//start game
 gameReferee.initGame();
 
 function updateStatus(status, color){
 	$("#status-attack").html(status);
 	$("#status-attack").css("color", color);
 }
-
 
 /******backgrounds slideshow ******/ //stackoverflow to the rescue!! 
 
@@ -305,7 +308,9 @@ var backgrounds = new Array(
 'url("assets/images/Ramayana-bg9.jpg")',
 'url("assets/images/Ramayana-bg10.jpg")',
 'url("assets/images/Ramayana-bg11.jpg")',
-'url("assets/images/Ramayana-bg14.jpg")'
+'url("assets/images/Ramayana-bg14.jpg")',
+'url("assets/images/Ramayana-bg15.jpg")',
+'url("assets/images/Ramayana-bg16.jpg")'
 );
 
 var current = 0;
@@ -327,8 +332,6 @@ body.css('background-size',  'cover');
 
 });
 
-/****end of backgrounds*****/
-
 /****sounds******/
 
 function sound(str){
@@ -344,6 +347,18 @@ function sound(str){
 	}
     audio.play();   
 }
+
+$('#btn-bg-sound').on('click', function(){
+	console.log('clicked');
+	var source = "assets/sounds/war.mp3";
+
+	if($('#sound').attr('src') === source){
+		$('#sound').attr('src', " ");
+	}else{
+		$('#sound').attr('src', source)
+	}
+
+});
 
 
 });

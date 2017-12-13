@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content=" RPG Game">
     <meta name="author" content="Asha Tad">
-    <title>RPG Game </title>
-	
+    <title>RPG Game </title>	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Joti+One|Caesar+Dressing|Diplomata|Ewert" rel="stylesheet">   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Joti+One|Caesar+Dressing|Diplomata|Ewert" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
 	<div class="container" id="main-content">
@@ -65,8 +66,49 @@
 	</div>
 	<div class="container" id="footer">
 		<div class="row">
-			<div class="col-md-12 text-center">
+			<div class="col-md-2">
+				<button class="btn btn-link" id="btn-bg-sound" "> 
+					<i class="fa fa-music" aria-hidden="true"></i>&nbsp;&nbsp;on/off 
+				</button>
+				<audio src="assets/sounds/war.mp3" id="sound" autoplay>
+				<p>No audio</p>
+				</audio>
+			</div>
+			<div class="col-md-8 text-center">
 				copyright &copy; 2017 AshaTad	
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-link" id="btn-info" data-toggle="modal" data-target="#myModal"> <i class="fa fa-info-circle" aria-hidden="true"></i>
+					&nbsp;Instructions 
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">RPG Instructions</h4>
+				</div>
+				<div class="modal-body" id="instructions">
+					<p>Choose YOUR Warrior character by clicking on the fighter's picture. Choose an opponent by clicking on an enemy's picture.</p>
+
+					<p> Click on 'ATTACK' to damage the defender.
+					The opponent will lose HP (health points). 
+					The opponent character will instantly counter the attack. 
+					The players will lose some of their HP. Points are shown at the bottom of the player character's picture.
+					The player will keep hitting the attack button in an effort to defeat their opponent. </p>
+
+					<p>When the defender's HP is reduced to zero or below,  enemy is removed and player character can now choose a new opponent.</p>
+					<p>The player wins the game by defeating all enemy characters. The player loses the game the game if their character's HP falls to zero or below.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
 			</div>
 		</div>
 	</div>		
