@@ -157,7 +157,7 @@ var gameReferee = {
 	checkGameStatus : function(){
 
 		if(warrior.isWarriorDefeated()){
-			$("#" + warrior.name).hide('slow');
+			$("#" + warrior.name).hide(2000);
 			this.isWarriorChosen = false;
 			this.isDefenderChosen = false;
 			return "warrior";
@@ -165,7 +165,7 @@ var gameReferee = {
 		}else if(warrior.isDefenderDefeated()){
 			this.defeatedDefendersCount++;
 
-			$("#" + defender.name).hide('slow');
+			$("#" + defender.name).hide(2000);
 			this.isDefenderChosen = false;
 			defender.reset();
 
