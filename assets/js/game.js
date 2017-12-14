@@ -208,7 +208,7 @@ $('.char-image').on('click', function(){
 
 	if(!gameReferee.isWarriorChosen){
 		$(this).css("border", "5px solid #00FF00");
-		$(this).appendTo('#div-warrior');
+		$(this).appendTo('#div-warrior').hide().show('slow');
 
 		$(charactersArray).filter(function(){
 			if(characterChosen === this.name){
@@ -217,7 +217,8 @@ $('.char-image').on('click', function(){
 		});		
 	}else if(!gameReferee.isDefenderChosen){	
 		$(this).css("border", "5px solid #FF0000");
-		$(this).appendTo('#div-defender');
+		$(this).appendTo('#div-defender').hide().show('slow');
+		
 		$('#btn-attack').removeAttr('disabled');
 
 		$(charactersArray).filter(function(){
