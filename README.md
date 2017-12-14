@@ -2,6 +2,8 @@
 
 RPG game with HTML5, CSS3, Bootstrap4, Javascript, Jquery
 
+Image and sound credits - Internet! 
+
 
 * When the game starts, the player will choose a character by clicking on a character picture. The player will fight as that character for the rest of the game.
 
