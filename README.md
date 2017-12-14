@@ -2,7 +2,7 @@
 
 RPG game with HTML5, CSS3, Bootstrap4, Javascript, Jquery
 
-# Theme - The Epic Ramayana!
+### Theme - The Epic Ramayana!
 
 Image and sound credits - Internet! 
 
