@@ -2,7 +2,11 @@
 
 RPG game with HTML5, CSS3, Bootstrap4, Javascript, Jquery
 
+### Theme - The Epic Ramayana!
+
 Image and sound credits - Internet! 
+
+[Click here to view](https://ashagm.github.io/Roleplay_Game/)
 
 
 * When the game starts, the player will choose a character by clicking on a character picture. The player will fight as that character for the rest of the game.
