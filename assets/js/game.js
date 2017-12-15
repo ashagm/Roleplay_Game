@@ -34,15 +34,12 @@ const charactersArray = [
 /*--- Warrior Object---*/
 
 var warrior = {
-	name : '',//test
+	name : '',
 	healthPoints : 0,
 	attackPower  : 0,
 	baseAttackPower : 0,
 	isDefeated : false,
 	
-	// object to store the current defender
-	currentDefender:{},
-
 	updateWarrior : function(warriorObj){
 		//get the relevant values from the pass warrior object
 		this.name = warriorObj.name;//test
@@ -51,17 +48,11 @@ var warrior = {
 		this.attackPower = this.baseAttackPower;	
 	},
 
-	//warrior knows who the enemy is?
-	setDefender: function(defenderObj){
-		this.currentDefender = defenderObj;
-	},
-
 	launchAttack : function(){		
-		// let defenderCounterAttackPower = this.currentDefender.defendAttack(this.attackPower);
+
 		console.log("Your attack power is now = ", this.attackPower);
 
 		let defenderCounterAttackPower = defender.defendAttack(this.attackPower);
-
 		this.healthPoints -= defenderCounterAttackPower; //decrement healthpoints
 		this.attackPower += this.baseAttackPower; //double attackpower 4,8, 12, 16 etc
 		
@@ -76,7 +67,6 @@ var warrior = {
 	},
 
 	isDefenderDefeated: function(){
-		// return this.currentDefender.isDefeated;
 		return defender.isDefeated();
 	},
 
@@ -91,7 +81,7 @@ var warrior = {
 /*--- Defender Object---*/
 
 var defender = {
-	name: '', //test
+	name: '', 
 	healthPoints : 0,
 	counterAttackPower : 0,
 	isDefenderDefeated : false,
@@ -119,7 +109,7 @@ var defender = {
 	},
 
 	reset: function(){
-		this.name = '';//test
+		this.name = '';
 		this.healthPoints = 0;
 		this.counterAttackPower = 0;
 		this.isDefenderDefeated = false;
@@ -132,25 +122,18 @@ var gameReferee = {
 	isWarriorChosen : false,
 	isDefenderChosen : false,
 
-	currentWarrior : {}, //todo-how to use these?
-	currentDefender : {}, //todo- how to use these?
-
 	defeatedDefendersCount : 0,
 
 	//method to set the current warrior
 	loadCurrentWarrior : function(chosenWarrior){
 		this.isWarriorChosen = true;
-		this.currentWarrior = chosenWarrior;
-		// this.currentWarrior.updateWarrior(chosenWarrior);
 		warrior.updateWarrior(chosenWarrior);
 	},
 
 	//method to set the current defender in the warrior object
 	loadCurrentDefender : function(chosenDefender){
 		this.isDefenderChosen = true;
-		this.currentDefender = chosenDefender;
 		defender.updateDefender(chosenDefender);
-		warrior.setDefender(chosenDefender);
 	},
 
 	//keep checking for the status of warrior and defender
@@ -159,7 +142,7 @@ var gameReferee = {
 		if(warrior.isWarriorDefeated()){
 			$("#" + warrior.name).hide(2000);
 			this.isWarriorChosen = false;
-			this.isDefenderChosen = false;
+			
 			return "warrior";
 
 		}else if(warrior.isDefenderDefeated()){
@@ -170,13 +153,11 @@ var gameReferee = {
 			defender.reset();
 
 			return "defender";
-
 		}
 	},
 
 	//launch attack
 	warriorAttack: function(){
-		// this.currentWarrior.launchAttack(); //todo: why not working?
 		warrior.launchAttack();
 	},
 
@@ -191,18 +172,18 @@ var gameReferee = {
 	resetGame : function(){
 		this.isWarriorChosen = false;
 		this.isDefenderChosen = false;
-		this.currentWarrior = {}; //todo
-		this.currentDefender = {};	//todo	
 		warrior.reset();
 		defender.reset();
 	}
-
 }
 
 //when the warrior or defender are chosen
 
 $('.char-image').on('click', function(){
 	sound('select');
+
+	console.log("gameReferee.isWarriorChosen", gameReferee.isWarriorChosen);
+		console.log("gameReferee.isDefenderChosen", gameReferee.isDefenderChosen);
 
 	let characterChosen = $(this).data("name");
 
@@ -249,6 +230,8 @@ $("#btn-attack").on('click', function(){
 	let defeated = gameReferee.checkGameStatus();
 
 	if(defeated === "warrior"){
+		$(".char-image").off('click'); //disable clicking another character
+
 		$('#btn-attack').attr('disabled', 'disabled');
 		updateStatus('You got defeated by ' + defenderName + '!', 'red' );
 		sound('win');
@@ -274,7 +257,7 @@ $("#btn-attack").on('click', function(){
 
 //restart game
 $("#btn-reset").on('click', function(){
-	location.reload(); //quick-fix only!! Have to find a better way
+	location.reload(); //Have to find a better way
 });
 
 //start game
@@ -285,7 +268,7 @@ function updateStatus(status, color){
 	$("#status-attack").css("color", color);
 }
 
-/******backgrounds slideshow ******/ //stackoverflow to the rescue!! 
+/******backgrounds slideshow ******/ //ref: stackoverflow 
 
 $(function() {
 var body = $('body');
